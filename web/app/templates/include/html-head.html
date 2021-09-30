@@ -1,0 +1,17 @@
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  {% if title %}
+    <title>{{title}} - Markdown</title>
+  {% else %}
+    <title>Markdown</title>
+  {% endif %}
+  {% include 'include/cdn_bootcdn.html' %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skin.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+  {% if custom_css %}
+    <link rel="stylesheet" type="text/css" href="/custom.css">
+  {% endif %}
+  {% if custom_js %}
+    <script type="text/javascript" src="/custom.js"></script>
+  {% endif %}
+</head>

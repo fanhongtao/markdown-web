@@ -1,0 +1,4 @@
+__pycache__/
+flask/
+app/test/
+app/static/cdn/

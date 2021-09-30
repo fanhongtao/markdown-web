@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+{% include 'include/html-head.html' %}
+<body>
+<div class="container-lg clearfix">
+{% include 'include/header.html' %}
+<div id="content">
+  {% block content %}{% endblock %}
+</div>
+{% include 'include/footer.html' %}
+</div>
+</body>
+</html>
