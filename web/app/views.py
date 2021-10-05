@@ -15,7 +15,7 @@ CUSTOM_JS = (MARKDOWN_PATH / 'custom.js').is_file()
 @app.route('/')
 @app.route('/index')
 def index():
-    return "index"
+    return index_page('')
 
 
 @app.route('/favicon.ico')
@@ -28,6 +28,8 @@ def favicon():
 
 @app.route('/<path:url>')
 def other_files(url):
+    if url.endswith('/'):
+        return index_page(url)
     return send_from_directory(MARKDOWN_PATH, url)
 
 
@@ -43,6 +45,24 @@ def markdown_file(url):
         'markdown_content': md_content,
         'custom_css': CUSTOM_CSS,
         'custom_js': CUSTOM_JS
+    }
+    return render_template(template, **kwargs)
+
+
+def index_page(url):
+    path = MARKDOWN_PATH / url
+    if not path.is_dir():
+        return "Directory [/" + url + "] not exist."
+
+    dirs = url[:-1].split('/')
+    crumbs = []
+    for i, item in enumerate(dirs):
+        crumbs.append((item, '/'.join(dirs[:i+1])))
+
+    template = 'markdown-index.html';
+    kwargs = {
+        'path': path,
+        'crumbs': crumbs
     }
     return render_template(template, **kwargs)
 

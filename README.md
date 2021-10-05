@@ -19,6 +19,7 @@ In order to use my wikis in Termux, I write this 'Markdown-web'. It is based on 
 * Support global `custom.css` and/or `custom.js` in markdown root directory.<br/>
   This feature is also copied from Gollum.
 * Support `favicon.ico` in markdown root directory.
+* Browse files if request a directory.
 
 
 # Target
