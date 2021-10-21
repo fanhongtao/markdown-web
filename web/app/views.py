@@ -10,7 +10,7 @@ MARKDOWN_PATH = pathlib.Path(app.root_path, '../../markdown')
 STATIC_PATH = pathlib.Path(app.root_path, 'static')
 CUSTOM_CSS = (MARKDOWN_PATH / 'custom.css').is_file()
 CUSTOM_JS = (MARKDOWN_PATH / 'custom.js').is_file()
-
+MATHJAX_CONFIG = (MARKDOWN_PATH / 'mathjax.config.js').is_file()
 
 @app.route('/')
 @app.route('/index')
@@ -44,7 +44,8 @@ def markdown_file(url):
     kwargs = {
         'markdown_content': md_content,
         'custom_css': CUSTOM_CSS,
-        'custom_js': CUSTOM_JS
+        'custom_js': CUSTOM_JS,
+        'mathjax_config': MATHJAX_CONFIG
     }
     return render_template(template, **kwargs)
 

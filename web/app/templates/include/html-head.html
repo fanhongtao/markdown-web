@@ -5,6 +5,9 @@
   {% else %}
     <title>Markdown</title>
   {% endif %}
+  {% if mathjax_config %}
+    <script type="text/javascript" src="/mathjax.config.js"></script>
+  {% endif %}
   {% include 'include/cdn_bootcdn.html' %}
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/skin.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
