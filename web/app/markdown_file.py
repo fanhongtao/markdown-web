@@ -9,7 +9,7 @@ def convert(md_file):
             'toc_depth': '3'
         }
     }
-    TOC = "<div markdown='1' class='toc-holder'>[TOC]</div>"
+    TOC = "<div markdown='1' id='toc-holder'>[TOC]</div>"
     md_content = markdown(TOC + md_file.read_text(),
         extensions=[
             'extra',
