@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+<script>
+var searchTerms  = [
+  {% for item in searchTerms %}
+    "{{item}}",
+  {% endfor %}
+]
+</script>
+<h1 class="py-4"><span class="f1-light text-gray-light">Search results for</span> {{ ' '.join(searchTerms) }}</h1>
+<p/>
+<div class="Box Box--condensed search-results" id="search-results">
+  <ul>
+  <div class="Box-header border-bottom p-0"></div>
+    {% for item in results %}
+    <li class="Box-row Box-row--gray">
+      <span class="Counter Counter--gray tooltipped tooltipped-w" aria-label="{{item.filename_count}} hits in filename - {{item.content_count}} hits in content">{{item.filename_count}} - {{item.content_count}}</span>&nbsp;
+      <span class="text-bold"><a href="/{{item.filename}}">{{ item.filename }}</a></span>
+      {% if item.lines | length > 3 %}
+      <button class="btn-link tooltipped tooltipped-w float-right toggle-context" aria-label="Show all {{ item.content_count }} hits in this page"><svg class="octicon octicon-search" viewBox="0 0 16 16" version="1.1" width="16" height="16" aria-hidden="true"><path fill-rule="evenodd" d="M11.5 7a4.499 4.499 0 11-8.998 0A4.499 4.499 0 0111.5 7zm-.82 4.74a6 6 0 111.06-1.06l3.04 3.04a.75.75 0 11-1.06 1.06l-3.04-3.04z"></path></svg></button>
+      {% endif %}
+    </li>
+
+    <div class="search-context">
+      {% for line in item.lines %}
+      <li class="Box-row border-0"><span class="text-italic">{{line}}</span></li>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </ul>
+</div>
+<div id="footer" class="mt-4">
+  <a class="btn" href="#">Back to Top</a>
+</div>
+{% endblock %}

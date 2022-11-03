@@ -20,6 +20,7 @@ In order to use my wikis in Termux, I write this 'Markdown-web'. It is based on 
   This feature is also copied from Gollum.
 * Support `favicon.ico` in markdown root directory.
 * Browse files if request a directory.
+* Support search by filename and original content of '.md', '.txt' files.
 
 
 # Target

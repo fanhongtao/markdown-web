@@ -1,10 +1,11 @@
 import pathlib
 
 from flask import send_from_directory
-from flask import render_template
+from flask import render_template, request
 
 from app import app
 from app.markdown_file import convert
+from app.search import search_files
 
 MARKDOWN_PATH = pathlib.Path(app.root_path, '../../markdown')
 STATIC_PATH = pathlib.Path(app.root_path, 'static')
@@ -64,6 +65,22 @@ def index_page(url):
     kwargs = {
         'path': path,
         'crumbs': crumbs
+    }
+    return render_template(template, **kwargs)
+
+
+@app.route('/search')
+def search():
+    q = request.args.get('q')
+    searchTerms = q.split()
+    results = search_files(MARKDOWN_PATH, searchTerms)
+    template = 'markdown-search.html';
+    kwargs = {
+        'searchTerms': searchTerms,
+        'results': results,
+        'custom_css': CUSTOM_CSS,
+        'custom_js': CUSTOM_JS,
+        'mathjax_config': MATHJAX_CONFIG
     }
     return render_template(template, **kwargs)
 
